@@ -30,9 +30,20 @@ namespace AstroSurveyor
 
         void Update()
         {
-            if (!character.isThrowing)
+            if (!character.isThrowing && !character.isBusy)
             {
                 HandleMovement();
+            }
+            else if (character.isBusy)
+            {
+                character.busyTime += Time.deltaTime;
+                var target = interact.target.GetComponent<Interactive>();
+                if (target.delay < character.busyTime) {
+                    state.SetState("idle");
+                    character.isBusy = false;
+                    character.busyTime = 0;
+                    target.OnInteract();
+                }
             }
         }
 
@@ -43,17 +54,14 @@ namespace AstroSurveyor
 
         public void OnMove(InputAction.CallbackContext value)
         {
-            if (!character.isThrowing)
-            {
-                Vector2 input = value.ReadValue<Vector2>();
-                character.inputX = input.x;
-                character.inputY = input.y;
-            }
+            Vector2 input = value.ReadValue<Vector2>();
+            character.inputX = input.x;
+            character.inputY = input.y;
         }
 
         public void OnAction(InputAction.CallbackContext value)
         {
-            if (value.performed && !character.isThrowing)
+            if (value.performed && !character.isThrowing && !character.isBusy)
             {
                 character.inputX = 0;
                 character.inputY = 0;
@@ -77,13 +85,32 @@ namespace AstroSurveyor
 
         public void OnInteract(InputAction.CallbackContext value)
         {
-            if (value.performed && !character.isHolding && !character.isThrowing)
+            if (!character.isHolding && !character.isThrowing)
             {
-                character.inputX = 0;
-                character.inputY = 0;
-                if (interact.hasTarget)
+                if (value.performed)
                 {
-                    interact.target.GetComponent<Interactive>().OnInteract();
+                    character.inputX = 0;
+                    character.inputY = 0;
+                    if (interact.hasTarget)
+                    {
+                        var target = interact.target.GetComponent<Interactive>();
+                        if (target.delay == 0)
+                        {
+                            target.OnInteract();
+                        }
+                        else
+                        {
+                            state.SetState("examine");
+                            character.isBusy = true;
+                            character.busyTime = 0;
+                        }
+                    }
+                }
+                else
+                {
+                    state.SetState("idle");
+                    character.isBusy = false;
+                    character.busyTime = 0;
                 }
             }
         }

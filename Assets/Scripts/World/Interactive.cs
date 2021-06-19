@@ -9,13 +9,14 @@ namespace AstroSurveyor
         public InteractionType type = InteractionType.TOGGLE;
         public float cooldown = 0f;
         public float delay = 0f;
+        public float startUpTime = 0f;
         public bool activeWhileCarried = false;
 
         // State
         private bool isActive = false;
         private bool isStarting = false;
         private float currentCooldown = 0f;
-        private float currentDelay = 0f;
+        private float currentStartUp = 0f;
 
         void Update()
         {
@@ -29,15 +30,15 @@ namespace AstroSurveyor
             }
             if (isStarting)
             {
-                if (currentDelay > 0)
+                if (currentStartUp > 0)
                 {
-                    currentDelay -= Time.deltaTime;
-                    if (currentDelay < 0)
+                    currentStartUp -= Time.deltaTime;
+                    if (currentStartUp < 0)
                     {
-                        currentDelay = 0;
+                        currentStartUp = 0;
                     }
                 }
-                if (currentDelay == 0)
+                if (currentStartUp == 0)
                 {
                     currentCooldown = cooldown;
                     isActive = true;
@@ -52,7 +53,7 @@ namespace AstroSurveyor
             if (!isActive && !isStarting && currentCooldown == 0)
             {
                 isStarting = true;
-                currentDelay = delay;
+                currentStartUp = startUpTime;
             }
             else if ((isActive || isStarting) && type != InteractionType.ONCE)
             {

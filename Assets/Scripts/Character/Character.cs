@@ -19,6 +19,8 @@ namespace AstroSurveyor
         public float inputX, inputY;
         public bool isHolding;
         public bool isThrowing;
+        public bool isBusy;
+        public float busyTime;
 
         void Start()
         {
@@ -36,7 +38,7 @@ namespace AstroSurveyor
 
         private void UpdateVelocity()
         {
-            if (body.velocity.sqrMagnitude < sqrMaxSpeed)
+            if (!isThrowing && !isBusy && body.velocity.sqrMagnitude < sqrMaxSpeed)
             {
                 var accX = acceleration * inputX;
                 var accY = acceleration * inputY;
