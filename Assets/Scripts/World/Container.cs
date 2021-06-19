@@ -47,6 +47,10 @@ namespace AstroSurveyor
             this.parent = parent;
             isCarried = true;
             sprite.transform.localPosition = carriedPos;
+            var interactive = GetComponent<Interactive>();
+            if (interactive != null && interactive.activeWhileCarried == false) {
+                interactive.Deactivate();
+            }
         }
 
         public void OnDrop()

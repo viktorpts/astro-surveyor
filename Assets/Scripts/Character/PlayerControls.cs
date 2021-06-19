@@ -10,11 +10,9 @@ namespace AstroSurveyor
         Animator animator;
         AnimatorManager state;
         Carry carry;
-        public bool inLZ;
-        float throwTime = 0.66f;
+        Interact interact;
+        float throwTime = 0.5f;
         Container inHands;
-        public GameObject selectorUI;
-        bool uiMode = false;
 
         void Start()
         {
@@ -22,6 +20,7 @@ namespace AstroSurveyor
             animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
             state = new AnimatorManager(animator, transform);
             carry = GetComponent<Carry>();
+            interact = GetComponent<Interact>();
         }
 
         public Direction GetDirection()
@@ -31,15 +30,7 @@ namespace AstroSurveyor
 
         void Update()
         {
-            if (character.isThrowing)
-            {
-                return;
-            }
-            else if (uiMode)
-            {
-                HandleUI();
-            }
-            else
+            if (!character.isThrowing)
             {
                 HandleMovement();
             }
@@ -52,14 +43,17 @@ namespace AstroSurveyor
 
         public void OnMove(InputAction.CallbackContext value)
         {
-            Vector2 input = value.ReadValue<Vector2>();
-            character.inputX = input.x;
-            character.inputY = input.y;
+            if (!character.isThrowing)
+            {
+                Vector2 input = value.ReadValue<Vector2>();
+                character.inputX = input.x;
+                character.inputY = input.y;
+            }
         }
 
         public void OnAction(InputAction.CallbackContext value)
         {
-            if (value.performed && !uiMode)
+            if (value.performed && !character.isThrowing)
             {
                 character.inputX = 0;
                 character.inputY = 0;
@@ -83,17 +77,13 @@ namespace AstroSurveyor
 
         public void OnInteract(InputAction.CallbackContext value)
         {
-            if (value.performed && inLZ && !character.isHolding && !character.isThrowing)
+            if (value.performed && !character.isHolding && !character.isThrowing)
             {
-                if (!uiMode)
+                character.inputX = 0;
+                character.inputY = 0;
+                if (interact.hasTarget)
                 {
-                    uiMode = true;
-                    selectorUI.SetActive(true);
-                }
-                else
-                {
-                    uiMode = false; ;
-                    selectorUI.SetActive(false);
+                    interact.target.GetComponent<Interactive>().OnInteract();
                 }
             }
         }
