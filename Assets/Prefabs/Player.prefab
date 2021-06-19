@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 1068788740}
   - component: {fileID: 1856057746}
   - component: {fileID: 1856057747}
+  - component: {fileID: 800316340994475221}
   - component: {fileID: 1856057750}
   m_Layer: 0
   m_Name: Player
@@ -180,7 +181,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inLZ: 0
-  handsOffset: {x: 0, y: 0}
   selectorUI: {fileID: 0}
 --- !u!114 &1856057747
 MonoBehaviour:
@@ -196,8 +196,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 100
   maxSpeed: 5
+  handsOffsetX: 0.35
+  handsOffsetY: 0.15
+  handsOffset: {x: 0, y: 0}
   inputX: 0
   inputY: 0
+--- !u!114 &800316340994475221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3646671337005771289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5832a0546238b44b93b504c59df0bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasTarget: 0
+  target: {fileID: 0}
+  radius: 0.5
 --- !u!114 &1856057750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +306,7 @@ MonoBehaviour:
     m_ActionId: a275fdda-4ac8-41b3-a9d9-70de0f977035
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Gamepad
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

@@ -45,6 +45,11 @@ namespace AstroSurveyor
                     Animator.StringToHash("throw_up"),
                     Animator.StringToHash("throw_side"),
                     Animator.StringToHash("throw_down")
+                },
+                ["examine"] = new int[] {
+                    Animator.StringToHash("duck_up"),
+                    Animator.StringToHash("duck_side"),
+                    Animator.StringToHash("duck_down")
                 }
             };
         }
@@ -68,15 +73,16 @@ namespace AstroSurveyor
             }
         }
 
-        private void UpdateTransformDir(Direction dir) {
+        private void UpdateTransformDir(Direction dir)
+        {
             switch (dir)
             {
                 case Direction.LEFT:
                     transform.localScale = new Vector3(1, 1);
-                break;
+                    break;
                 case Direction.RIGHT:
                     transform.localScale = new Vector3(-1, 1);
-                break;
+                    break;
             }
         }
 

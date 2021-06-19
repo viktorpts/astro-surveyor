@@ -9,12 +9,10 @@ namespace AstroSurveyor
         Character character;
         Animator animator;
         AnimatorManager state;
-        // Carry carry;
-        bool isHolding;
-        bool isThrowing;
+        Carry carry;
         public bool inLZ;
         float throwTime = 0.66f;
-        // Container inHands;
+        Container inHands;
         public GameObject selectorUI;
         bool uiMode = false;
 
@@ -23,7 +21,7 @@ namespace AstroSurveyor
             character = gameObject.GetComponent<Character>();
             animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
             state = new AnimatorManager(animator, transform);
-            // carry = GetComponent<Carry>();
+            carry = GetComponent<Carry>();
         }
 
         public Direction GetDirection()
@@ -33,7 +31,7 @@ namespace AstroSurveyor
 
         void Update()
         {
-            if (isThrowing)
+            if (character.isThrowing)
             {
                 return;
             }
@@ -49,7 +47,7 @@ namespace AstroSurveyor
 
         void ThrowComplete()
         {
-            isThrowing = false;
+            character.isThrowing = false;
         }
 
         public void OnMove(InputAction.CallbackContext value)
@@ -59,37 +57,33 @@ namespace AstroSurveyor
             character.inputY = input.y;
         }
 
-        /*
         public void OnAction(InputAction.CallbackContext value)
         {
             if (value.performed && !uiMode)
             {
-                character.control.y = 0;
-                character.control.x = 0;
-                if (!isHolding && carry.hasTarget)
+                character.inputX = 0;
+                character.inputY = 0;
+                if (!character.isHolding && carry.hasTarget)
                 {
-                    isHolding = true;
+                    character.isHolding = true;
                     state.SetState("hold");
                     inHands = carry.target.GetComponent<Container>();
-                    inHands.parent = gameObject;
-                    inHands.OnPickUp();
+                    inHands.OnPickUp(gameObject);
                 }
-                else if (isHolding)
+                else if (character.isHolding)
                 {
-                    isHolding = false;
-                    isThrowing = true;
+                    character.isHolding = false;
+                    character.isThrowing = true;
                     state.SetState("throw");
                     inHands.OnDrop();
-                    inHands.parent = null;
                     Invoke("ThrowComplete", throwTime);
                 }
             }
         }
-        */
 
         public void OnInteract(InputAction.CallbackContext value)
         {
-            if (value.performed && inLZ && !isHolding && !isThrowing)
+            if (value.performed && inLZ && !character.isHolding && !character.isThrowing)
             {
                 if (!uiMode)
                 {
@@ -113,11 +107,11 @@ namespace AstroSurveyor
         {
             if (character.inputX == 0 && character.inputY == 0)
             {
-                state.SetState(isHolding ? "hold" : "idle");
+                state.SetState(character.isHolding ? "hold" : "idle");
             }
             else
             {
-                state.SetState(isHolding ? "carry" : "walk");
+                state.SetState(character.isHolding ? "carry" : "walk");
 
                 if (Mathf.Abs(character.inputX) > Mathf.Abs(character.inputY))
                 {

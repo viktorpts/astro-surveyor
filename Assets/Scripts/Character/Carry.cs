@@ -8,13 +8,13 @@ namespace AstroSurveyor
     {
         public bool hasTarget = false;
         public GameObject target = null;
-        public RectTransform arrow;
+        // public RectTransform arrow;
         public float radius = 0.5f;
 
         void Start()
         {
-            var arrowObject = GameObject.FindWithTag("TargetPointer");
-            arrow = arrowObject.GetComponent<RectTransform>();
+            // var arrowObject = GameObject.FindWithTag("TargetPointer");
+            // arrow = arrowObject.GetComponent<RectTransform>();
         }
 
         void Update()
@@ -32,16 +32,16 @@ namespace AstroSurveyor
             {
                 hasTarget = true;
                 target = first.gameObject;
-                var offsetX = Camera.main.WorldToScreenPoint(first.transform.position).x;
-                var offsetY = Camera.main.WorldToScreenPoint(first.transform.position).y;
-                arrow.anchoredPosition = new Vector2(offsetX, offsetY + 50);
-                arrow.gameObject.SetActive(true);
+                // var offsetX = Camera.main.WorldToScreenPoint(first.transform.position).x;
+                // var offsetY = Camera.main.WorldToScreenPoint(first.transform.position).y;
+                // arrow.anchoredPosition = new Vector2(offsetX, offsetY + 50);
+                // arrow.gameObject.SetActive(true);
             }
             else
             {
                 hasTarget = false;
                 target = null;
-                arrow.gameObject.SetActive(false);
+                // arrow.gameObject.SetActive(false);
             }
         }
     }

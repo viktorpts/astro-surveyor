@@ -4,17 +4,13 @@ namespace AstroSurveyor
 {
     public class Container : MonoBehaviour
     {
-        public delegate void ChangeState(bool active);
-        public event ChangeState OnStateChange;
-
-
         bool isCarried = false;
         float dropTime = 0f;
         bool dropping = false;
         Vector3 carriedPos = new Vector3(0, 0.85f, 0);
         Vector3 groundPos = new Vector3(0, 0.48f, 0);
         Transform sprite;
-        public GameObject parent;
+        GameObject parent;
 
         public bool IsCarried { get => isCarried; }
 
@@ -37,10 +33,6 @@ namespace AstroSurveyor
                 {
                     dropping = false;
                     sprite.transform.localPosition = groundPos;
-                    if (OnStateChange != null)
-                    {
-                        OnStateChange(true);
-                    }
                 }
                 else
                 {
@@ -50,18 +42,16 @@ namespace AstroSurveyor
             }
         }
 
-        public void OnPickUp()
+        public void OnPickUp(GameObject parent)
         {
+            this.parent = parent;
             isCarried = true;
             sprite.transform.localPosition = carriedPos;
-            if (OnStateChange != null)
-            {
-                OnStateChange(false);
-            }
         }
 
         public void OnDrop()
         {
+            this.parent = null;
             isCarried = false;
             dropping = true;
             dropTime = 0f;

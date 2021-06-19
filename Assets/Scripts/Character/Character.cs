@@ -17,6 +17,8 @@ namespace AstroSurveyor
         public Vector2 handsOffset;
         public Vector2 Velocity { get; private set; }
         public float inputX, inputY;
+        public bool isHolding;
+        public bool isThrowing;
 
         void Start()
         {
@@ -57,11 +59,11 @@ namespace AstroSurveyor
                     break;
                 case Direction.LEFT:
                     handsOffset.x = -handsOffsetX;
-                    handsOffset.y = 0.05f;
+                    handsOffset.y = -0.05f;
                     break;
                 case Direction.RIGHT:
                     handsOffset.x = handsOffsetX;
-                    handsOffset.y = 0.05f;
+                    handsOffset.y = -0.05f;
                     break;
             }
         }
