@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 451839417874855880}
   - component: {fileID: 451839415995266194}
   - component: {fileID: 6665238719486017508}
+  - component: {fileID: 5191425513725897235}
   m_Layer: 0
   m_Name: Drill
   m_TagString: Container
@@ -274,3 +275,20 @@ MonoBehaviour:
   startUpTime: 5
   activeWhileCarried: 0
   radius: 0.5
+--- !u!114 &5191425513725897235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446944227277315967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f643c9f4ee1a9c41986421418b8944c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasTarget: 0
+  target: {fileID: 0}
+  radius: 10
+  resourceType: 0
+  rate: 1

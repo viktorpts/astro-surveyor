@@ -9,11 +9,10 @@ namespace AstroSurveyor
 
         public override void Activate()
         {
+            base.Activate();
             var sourcePos = gameObject.transform.position;
             Instantiate(result, sourcePos, Quaternion.identity);
             Destroy(gameObject);
         }
-
-        public override void Deactivate() { }
     }
 }

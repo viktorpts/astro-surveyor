@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 
@@ -13,14 +14,24 @@ namespace AstroSurveyor
         public bool activeWhileCarried = false;
 
         // State
-        private bool isActive = false;
-        private bool isStarting = false;
-        private float currentCooldown = 0f;
-        private float currentStartUp = 0f;
+        bool isActive = false;
+        bool isStarting = false;
+        float currentCooldown = 0f;
+        float currentStartUp = 0f;
+        [SerializeField]
+        Consumer[] consumers;
+        Producer[] producers;
 
-        public virtual bool MeetsRequirements => true;
+        // Query
+        public virtual bool MeetsRequirements => consumers.All(c => c.CanActivate);
 
         public bool IsActive => isActive;
+
+        void Start()
+        {
+            consumers = GetComponents<Consumer>();
+            producers = GetComponents<Producer>();
+        }
 
 
         void Update()
@@ -76,8 +87,38 @@ namespace AstroSurveyor
             }
         }
 
-        public abstract void Activate();
 
-        public abstract void Deactivate();
+        public virtual void Activate()
+        {
+            if (MeetsRequirements == false)
+            {
+                isActive = false;
+                isStarting = false;
+                return;
+            }
+
+            Debug.Log("Activating...");
+
+            foreach (var consumer in consumers)
+            {
+                consumer.Activate();
+            }
+            foreach (var producer in producers)
+            {
+                producer.Activate();
+            }
+        }
+
+        public virtual void Deactivate()
+        {
+            foreach (var consumer in consumers)
+            {
+                consumer.Deactivate();
+            }
+            foreach (var producer in producers)
+            {
+                producer.Deactivate();
+            }
+        }
     }
 }

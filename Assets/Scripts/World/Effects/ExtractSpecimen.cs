@@ -13,18 +13,17 @@ namespace AstroSurveyor
             get
             {
                 var formation = FindFormation();
-                return formation != null && formation.GetComponent<Formation>().IsActive;
+                return base.MeetsRequirements && formation != null && formation.GetComponent<Formation>().IsActive;
             }
         }
 
         public override void Activate()
         {
+            base.Activate();
             var center = transform.position;
             var result = FindFormation().GetComponent<Formation>().specimenType;
             Instantiate(result, center, Quaternion.identity);
         }
-
-        public override void Deactivate() { }
 
         GameObject FindFormation()
         {
