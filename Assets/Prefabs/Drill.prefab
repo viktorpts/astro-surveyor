@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 4446944227277315966}
   - component: {fileID: 451839417874855880}
   - component: {fileID: 451839415995266194}
-  - component: {fileID: 687328314089516088}
+  - component: {fileID: 6665238719486017508}
   m_Layer: 0
   m_Name: Drill
   m_TagString: Container
@@ -256,7 +256,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &687328314089516088
+--- !u!114 &6665238719486017508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,10 +265,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4446944227277315967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bbfce881cef86e4ab06f991dbfb3c8e, type: 3}
+  m_Script: {fileID: 11500000, guid: bab4a125fe315dc4fba863ae9df559d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 2
   cooldown: 0
   delay: 0
+  startUpTime: 5
   activeWhileCarried: 0
+  radius: 0.5

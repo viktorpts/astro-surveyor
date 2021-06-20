@@ -7,8 +7,8 @@ namespace AstroSurveyor
         bool isCarried = false;
         float dropTime = 0f;
         bool dropping = false;
-        Vector3 carriedPos = new Vector3(0, 0.85f, 0);
-        Vector3 groundPos = new Vector3(0, 0.48f, 0);
+        Vector3 carriedPos = new Vector3(0, 0.37f, 0);
+        Vector3 groundPos = new Vector3(0, 0, 0);
         Transform sprite;
         GameObject parent;
 

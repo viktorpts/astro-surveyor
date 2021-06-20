@@ -18,6 +18,11 @@ namespace AstroSurveyor
         private float currentCooldown = 0f;
         private float currentStartUp = 0f;
 
+        public virtual bool MeetsRequirements => true;
+
+        public bool IsActive => isActive;
+
+
         void Update()
         {
             if (currentCooldown > 0)
@@ -52,8 +57,16 @@ namespace AstroSurveyor
         {
             if (!isActive && !isStarting && currentCooldown == 0)
             {
-                isStarting = true;
-                currentStartUp = startUpTime;
+                if (MeetsRequirements)
+                {
+                    isStarting = true;
+                    currentStartUp = startUpTime;
+                }
+                else
+                {
+                    // TODO display message/animation for missing requirements
+                    Debug.Log("Equipment not calibrated - examine formation for specs");
+                }
             }
             else if ((isActive || isStarting) && type != InteractionType.ONCE)
             {

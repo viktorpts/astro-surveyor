@@ -11,7 +11,6 @@ namespace AstroSurveyor
         {
             var sourcePos = gameObject.transform.position;
             Instantiate(result, sourcePos, Quaternion.identity);
-            gameObject.SetActive(false);
             Destroy(gameObject);
         }
 

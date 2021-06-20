@@ -24,7 +24,7 @@ namespace AstroSurveyor
                 }
             }
             var targetComponent = collider.GetComponentInParent<Interactive>();
-            return targetComponent != null;
+            return targetComponent != null && (targetComponent.type == InteractionType.ONCE && targetComponent.IsActive) == false;
         }
     }
 }
