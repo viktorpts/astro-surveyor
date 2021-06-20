@@ -14,6 +14,25 @@ namespace AstroSurveyor
         float throwTime = 0.5f;
         Container inHands;
 
+        public Container InHands { get => inHands; }
+
+        bool CanInteract
+        {
+            get
+            {
+                if (!character.isHolding && !character.isThrowing)
+                {
+                    return true;
+                }
+                else if (character.isHolding && inHands != null)
+                {
+                    var target = inHands.GetComponent<Interactive>();
+                    return target != null && target.activeWhileCarried;
+                }
+                return false;
+            }
+        }
+
         void Start()
         {
             character = gameObject.GetComponent<Character>();
@@ -30,6 +49,10 @@ namespace AstroSurveyor
 
         void Update()
         {
+            // This check makes sure objects that transform on activation do not occupy the hand slot
+            if (character.isHolding && inHands == null) {
+                character.isHolding = false;
+            }
             if (!character.isThrowing && !character.isBusy)
             {
                 HandleMovement();
@@ -38,11 +61,12 @@ namespace AstroSurveyor
             {
                 character.busyTime += Time.deltaTime;
                 var target = interact.target.GetComponent<Interactive>();
-                if (target.delay < character.busyTime) {
+                if (target.delay < character.busyTime)
+                {
                     state.SetState("idle");
                     character.isBusy = false;
                     character.busyTime = 0;
-                    target.OnInteract();
+                    CompleteInteraction(target);
                 }
             }
         }
@@ -85,7 +109,7 @@ namespace AstroSurveyor
 
         public void OnInteract(InputAction.CallbackContext value)
         {
-            if (!character.isHolding && !character.isThrowing)
+            if (CanInteract)
             {
                 if (value.performed)
                 {
@@ -96,7 +120,7 @@ namespace AstroSurveyor
                         var target = interact.target.GetComponent<Interactive>();
                         if (target.delay == 0)
                         {
-                            target.OnInteract();
+                            CompleteInteraction(target);
                         }
                         else
                         {
@@ -113,6 +137,11 @@ namespace AstroSurveyor
                     character.busyTime = 0;
                 }
             }
+        }
+
+        void CompleteInteraction(Interactive target)
+        {
+            target.OnInteract();
         }
 
         void HandleUI()
