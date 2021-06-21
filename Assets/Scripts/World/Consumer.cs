@@ -22,9 +22,6 @@ namespace AstroSurveyor
             return targetComponent != null && targetComponent.resourceType == resourceType && targetComponent.AvailableCapacity >= rate;
         }
 
-        // TODO might need logic to break the link if the producer moves out of range (currently neither consumers nor producers can be moved,
-        // but there is nothing preventing either from having a Container with activeWhileCarried attached to it, making it movable)
-
         public bool Activate()
         {
             if (hasTarget && target.GetComponent<Producer>().Link(this))
@@ -41,6 +38,7 @@ namespace AstroSurveyor
             if (producer != null)
             {
                 producer.UnLink(this);
+                producer = null;
             }
         }
     }

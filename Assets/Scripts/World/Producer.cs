@@ -43,18 +43,25 @@ namespace AstroSurveyor
 
         public void UnLink(Consumer consumer)
         {
-            consumption -= consumer.rate;
-            consumers.Remove(consumer);
+            if (consumers.Contains(consumer))
+            {
+                consumption -= consumer.rate;
+                consumers.Remove(consumer);
+                consumer.Deactivate();
+            }
         }
 
-        public void Activate() {
+        public void Activate()
+        {
             // TODO animation
             isActive = true;
         }
 
-        public void Deactivate() {
+        public void Deactivate()
+        {
             // TODO animation
-            foreach (var consumer in consumers) {
+            foreach (var consumer in consumers)
+            {
                 UnLink(consumer);
             }
             isActive = false;

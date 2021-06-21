@@ -23,7 +23,8 @@ namespace AstroSurveyor
         Animator animator;
 
         // Query
-        public virtual bool MeetsRequirements => consumers.All(c => c.CanActivate);
+        public bool ConsumersSatifsfied => consumers.All(c => c.CanActivate);
+        public virtual bool MeetsRequirements => true;
 
         public bool IsActive => isActive;
 
@@ -64,13 +65,16 @@ namespace AstroSurveyor
                     Activate(false);
                 }
             }
+            if (ConsumersSatifsfied == false) {
+                Deactivate();
+            }
         }
 
         public void OnInteract()
         {
             if (!isActive && !isStarting && currentCooldown == 0)
             {
-                if (MeetsRequirements)
+                if (ConsumersSatifsfied && MeetsRequirements)
                 {
                     isStarting = true;
                     currentStartUp = startUpTime;
@@ -100,7 +104,7 @@ namespace AstroSurveyor
 
         public virtual void Activate(bool isScanner)
         {
-            if (MeetsRequirements == false && isScanner == false)
+            if ((MeetsRequirements == false && isScanner == false) || ConsumersSatifsfied == false)
             {
                 isActive = false;
                 isStarting = false;
