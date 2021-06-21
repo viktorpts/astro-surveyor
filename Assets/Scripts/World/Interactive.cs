@@ -72,6 +72,9 @@ namespace AstroSurveyor
                 {
                     isStarting = true;
                     currentStartUp = startUpTime;
+
+                    // TODO repalce with animation
+                    gameObject.transform.GetComponentInChildren<SpriteRenderer>().color = new Color(0.5f, 1f, 1f);
                 }
                 else
                 {
@@ -97,8 +100,6 @@ namespace AstroSurveyor
                 return;
             }
 
-            Debug.Log("Activating...");
-
             foreach (var consumer in consumers)
             {
                 consumer.Activate();
@@ -107,6 +108,9 @@ namespace AstroSurveyor
             {
                 producer.Activate();
             }
+
+            // TODO repalce with animation
+            gameObject.transform.GetComponentInChildren<SpriteRenderer>().color = new Color(0.5f, 1f, 0.75f);
         }
 
         public virtual void Deactivate()
@@ -119,6 +123,9 @@ namespace AstroSurveyor
             {
                 producer.Deactivate();
             }
+
+            // TODO repalce with animation
+            gameObject.transform.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 1f);
         }
     }
 }
