@@ -11,14 +11,13 @@ namespace AstroSurveyor
         public float cooldown = 0f;
         public float delay = 0f;
         public float startUpTime = 0f;
-        public bool activeWhileCarried = false;
+        public bool mustCarry = false;
 
         // State
         bool isActive = false;
         bool isStarting = false;
         float currentCooldown = 0f;
         float currentStartUp = 0f;
-        [SerializeField]
         Consumer[] consumers;
         Producer[] producers;
 
@@ -42,6 +41,10 @@ namespace AstroSurveyor
                 if (currentCooldown < 0)
                 {
                     currentCooldown = 0;
+                    if (type == InteractionType.PUSH)
+                    {
+                        Deactivate();
+                    }
                 }
             }
             if (isStarting)
@@ -74,7 +77,7 @@ namespace AstroSurveyor
                     currentStartUp = startUpTime;
 
                     // TODO repalce with animation
-                    gameObject.transform.GetComponentInChildren<SpriteRenderer>().color = new Color(0.5f, 1f, 1f);
+                    gameObject.transform.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 0.5f);
                 }
                 else
                 {

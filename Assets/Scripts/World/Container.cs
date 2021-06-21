@@ -47,8 +47,11 @@ namespace AstroSurveyor
             this.parent = parent;
             isCarried = true;
             sprite.transform.localPosition = carriedPos;
+
+            // Deactivate stationary equipment on pick up
             var interactive = GetComponent<Interactive>();
-            if (interactive != null && interactive.activeWhileCarried == false) {
+            if (interactive != null && interactive.mustCarry == false)
+            {
                 interactive.Deactivate();
             }
         }
@@ -59,6 +62,13 @@ namespace AstroSurveyor
             isCarried = false;
             dropping = true;
             dropTime = 0f;
+
+            // Deactivate handheld equipment on drop
+            var interactive = GetComponent<Interactive>();
+            if (interactive != null && interactive.mustCarry == true)
+            {
+                interactive.Deactivate();
+            }
         }
     }
 }

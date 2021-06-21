@@ -27,7 +27,7 @@ namespace AstroSurveyor
                 else if (character.isHolding && inHands != null)
                 {
                     var target = inHands.GetComponent<Interactive>();
-                    return target != null && target.activeWhileCarried;
+                    return target != null && target.mustCarry;
                 }
                 return false;
             }
@@ -102,6 +102,7 @@ namespace AstroSurveyor
                     character.isThrowing = true;
                     state.SetState("throw");
                     inHands.OnDrop();
+                    inHands = null;
                     Invoke("ThrowComplete", throwTime);
                 }
             }
