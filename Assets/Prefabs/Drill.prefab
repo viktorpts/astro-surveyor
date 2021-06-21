@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7141054748388720349}
   - component: {fileID: 7105297559496279528}
+  - component: {fileID: 2725441497753582453}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3153586479939780990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.49, z: 0}
+  m_LocalPosition: {x: 0, y: -0.002, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 4446944227277315960}
@@ -81,6 +82,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2725441497753582453
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3153586479939780990}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 270a0496d915a0441ba4da9a1e10fc33, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3902988041505036707
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,8 +194,9 @@ GameObject:
   - component: {fileID: 4446944227277315966}
   - component: {fileID: 451839417874855880}
   - component: {fileID: 451839415995266194}
-  - component: {fileID: 6665238719486017508}
+  - component: {fileID: 77199501005085794}
   - component: {fileID: 5191425513725897235}
+  - component: {fileID: 6665238719486017508}
   m_Layer: 0
   m_Name: Drill
   m_TagString: Container
@@ -257,7 +278,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6665238719486017508
+--- !u!114 &77199501005085794
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -266,15 +287,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4446944227277315967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bab4a125fe315dc4fba863ae9df559d1, type: 3}
+  m_Script: {fileID: 11500000, guid: b6ec0ab0e78aea24dab91581fb3cf4bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
-  cooldown: 0
-  delay: 0
-  startUpTime: 5
-  activeWhileCarried: 0
-  radius: 0.5
 --- !u!114 &5191425513725897235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,3 +307,21 @@ MonoBehaviour:
   radius: 10
   resourceType: 0
   rate: 1
+--- !u!114 &6665238719486017508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446944227277315967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab4a125fe315dc4fba863ae9df559d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  cooldown: 1
+  delay: 1
+  startUpTime: 5
+  mustCarry: 0
+  radius: 0.5

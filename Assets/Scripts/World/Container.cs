@@ -52,7 +52,7 @@ namespace AstroSurveyor
             var interactive = GetComponent<Interactive>();
             if (interactive != null && interactive.mustCarry == false)
             {
-                interactive.Deactivate();
+                interactive.Stow();
             }
         }
 
@@ -67,7 +67,7 @@ namespace AstroSurveyor
             var interactive = GetComponent<Interactive>();
             if (interactive != null && interactive.mustCarry == true)
             {
-                interactive.Deactivate();
+                interactive.Stow();
             }
         }
     }

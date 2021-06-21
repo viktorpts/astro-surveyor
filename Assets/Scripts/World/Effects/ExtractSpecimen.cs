@@ -25,9 +25,9 @@ namespace AstroSurveyor
             }
         }
 
-        public override void Activate()
+        public override void Activate(bool isScanner)
         {
-            base.Activate();
+            base.Activate(isScanner);
             var center = transform.position;
             var formation = FindFormation().GetComponent<Formation>();
             var result = formation.specimenType;

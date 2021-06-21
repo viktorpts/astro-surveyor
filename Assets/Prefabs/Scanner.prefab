@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 1585530367447598016}
   - component: {fileID: 1585530365569056922}
   - component: {fileID: 1786628374363806944}
+  - component: {fileID: 7429985373784762702}
   m_Layer: 0
   m_Name: Scanner
   m_TagString: Container
@@ -187,6 +188,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ec0ab0e78aea24dab91581fb3cf4bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7429985373784762702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3311015230358334327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f631f3ede07964a95c4a1c1606667b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  cooldown: 1
+  delay: 0
+  startUpTime: 3
+  mustCarry: 0
+  radius: 5
 --- !u!1 &4289226507168331126
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,6 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8313558656011422421}
   - component: {fileID: 8277256049216844256}
+  - component: {fileID: 7788322028234952220}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -268,3 +288,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7788322028234952220
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4289226507168331126}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 08b46850472ec4e46b66c09732241b20, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

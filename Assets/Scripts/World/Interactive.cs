@@ -20,6 +20,7 @@ namespace AstroSurveyor
         float currentStartUp = 0f;
         Consumer[] consumers;
         Producer[] producers;
+        Animator animator;
 
         // Query
         public virtual bool MeetsRequirements => consumers.All(c => c.CanActivate);
@@ -30,6 +31,7 @@ namespace AstroSurveyor
         {
             consumers = GetComponents<Consumer>();
             producers = GetComponents<Producer>();
+            animator = GetComponentInChildren<Animator>();
         }
 
 
@@ -59,10 +61,7 @@ namespace AstroSurveyor
                 }
                 if (currentStartUp == 0)
                 {
-                    currentCooldown = cooldown;
-                    isActive = true;
-                    isStarting = false;
-                    Activate();
+                    Activate(false);
                 }
             }
         }
@@ -76,8 +75,15 @@ namespace AstroSurveyor
                     isStarting = true;
                     currentStartUp = startUpTime;
 
-                    // TODO repalce with animation
-                    gameObject.transform.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 0.5f);
+                    if (animator != null)
+                    {
+                        animator.SetBool("stowed", false);
+                        animator.SetBool("working", true);
+                    }
+                    else
+                    {
+                        gameObject.transform.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 0.5f);
+                    }
                 }
                 else
                 {
@@ -87,21 +93,23 @@ namespace AstroSurveyor
             }
             else if ((isActive || isStarting) && type != InteractionType.ONCE)
             {
-                isActive = false;
-                isStarting = false;
                 Deactivate();
             }
         }
 
 
-        public virtual void Activate()
+        public virtual void Activate(bool isScanner)
         {
-            if (MeetsRequirements == false)
+            if (MeetsRequirements == false && isScanner == false)
             {
                 isActive = false;
                 isStarting = false;
                 return;
             }
+
+            currentCooldown = cooldown;
+            isActive = true;
+            isStarting = false;
 
             foreach (var consumer in consumers)
             {
@@ -112,12 +120,22 @@ namespace AstroSurveyor
                 producer.Activate();
             }
 
-            // TODO repalce with animation
-            gameObject.transform.GetComponentInChildren<SpriteRenderer>().color = new Color(0.5f, 1f, 0.75f);
+            if (animator != null)
+            {
+                animator.SetBool("working", false);
+                animator.SetBool("stowed", false);
+            }
+            else
+            {
+                gameObject.transform.GetComponentInChildren<SpriteRenderer>().color = new Color(0.5f, 1f, 0.75f);
+            }
         }
 
         public virtual void Deactivate()
         {
+            isActive = false;
+            isStarting = false;
+
             foreach (var consumer in consumers)
             {
                 consumer.Deactivate();
@@ -127,8 +145,22 @@ namespace AstroSurveyor
                 producer.Deactivate();
             }
 
-            // TODO repalce with animation
-            gameObject.transform.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+            if (animator != null)
+            {
+                animator.SetBool("working", false);
+            }
+            else
+            {
+                gameObject.transform.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+            }
+        }
+
+        public virtual void Stow() {
+            Deactivate();
+            if (animator != null)
+            {
+                animator.SetBool("stowed", true);
+            }
         }
     }
 }

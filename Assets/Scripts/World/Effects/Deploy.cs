@@ -7,9 +7,9 @@ namespace AstroSurveyor
     {
         public GameObject result;
 
-        public override void Activate()
+        public override void Activate(bool isScanner)
         {
-            base.Activate();
+            base.Activate(isScanner);
             var sourcePos = gameObject.transform.position;
             Instantiate(result, sourcePos, Quaternion.identity);
             Destroy(gameObject);

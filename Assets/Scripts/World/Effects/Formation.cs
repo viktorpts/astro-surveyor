@@ -9,6 +9,6 @@ namespace AstroSurveyor
         public bool scannerRequired;
         public bool harvested;
 
-        public override bool MeetsRequirements => scannerRequired == false;
+        public override bool MeetsRequirements => base.MeetsRequirements && scannerRequired == false;
     }
 }
