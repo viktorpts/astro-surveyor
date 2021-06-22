@@ -8,20 +8,32 @@ namespace AstroSurveyor
     {
         public float radius = 0.5f;
 
-        public override bool MeetsRequirements
+        public override bool MeetsRequirements()
         {
-            get
+            var formation = FindFormation();
+            if (formation == null)
             {
-                var formation = FindFormation();
-                if (base.MeetsRequirements && formation != null)
+                GameManager.Instance.ShowMessage("This location isn't suitable for sampling");
+                return false;
+            }
+            else if (base.MeetsRequirements())
+            {
+                var component = formation.GetComponent<Formation>();
+                if (component.IsActive == false)
                 {
-                    var component = formation.GetComponent<Formation>();
-                    return component.IsActive && component.harvested == false;
-                }
-                else
-                {
+                    GameManager.Instance.ShowMessage("Equipment not calibrated: Examine the formation first");
                     return false;
                 }
+                else if (component.harvested)
+                {
+                    GameManager.Instance.ShowMessage("This formation has already been sampled!");
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -33,6 +45,7 @@ namespace AstroSurveyor
             var result = formation.specimenType;
             Instantiate(result, center, Quaternion.identity);
             formation.harvested = true;
+            GameManager.Instance.ShowMessage("Specimen extracted");
         }
 
         GameObject FindFormation()

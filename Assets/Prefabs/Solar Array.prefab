@@ -290,9 +290,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bbfce881cef86e4ab06f991dbfb3c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 2
   cooldown: 0
-  delay: 0
+  delay: 1
   startUpTime: 0
   mustCarry: 0
 --- !u!114 &6269232660786991779

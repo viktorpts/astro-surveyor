@@ -9,6 +9,17 @@ namespace AstroSurveyor
         public bool scannerRequired;
         public bool harvested;
 
-        public override bool MeetsRequirements => base.MeetsRequirements && scannerRequired == false;
+        public override bool MeetsRequirements()
+        {
+            if (scannerRequired)
+            {
+                GameManager.Instance.ShowMessage("This formation requires a Scanner");
+                return false;
+            }
+            else
+            {
+                return base.MeetsRequirements();
+            }
+        }
     }
 }

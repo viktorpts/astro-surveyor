@@ -50,17 +50,28 @@ namespace AstroSurveyor
         void Update()
         {
             // This check makes sure objects that transform on activation do not occupy the hand slot
-            if (character.isHolding && inHands == null) {
+            if (character.isHolding && inHands == null)
+            {
                 character.isHolding = false;
             }
             if (!character.isThrowing && !character.isBusy)
             {
                 HandleMovement();
+                if (interact.hasTarget)
+                {
+                    GameManager.Instance.ShowTarget(interact.target);
+                }
+                else
+                {
+                    GameManager.Instance.HideTarget();
+                }
             }
             else if (character.isBusy)
             {
                 character.busyTime += Time.deltaTime;
                 var target = interact.target.GetComponent<Interactive>();
+                GameManager.Instance.UpdateProgressBar(gameObject, character.busyTime / target.delay);
+
                 if (target.delay < character.busyTime)
                 {
                     state.SetState("idle");
@@ -133,9 +144,13 @@ namespace AstroSurveyor
                 }
                 else
                 {
-                    state.SetState("idle");
-                    character.isBusy = false;
-                    character.busyTime = 0;
+                    if (character.isBusy)
+                    {
+                        state.SetState("idle");
+                        character.isBusy = false;
+                        character.busyTime = 0;
+                        GameManager.Instance.HideProgressBar(gameObject);
+                    }
                 }
             }
         }

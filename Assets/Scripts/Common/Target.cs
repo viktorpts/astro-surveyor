@@ -26,16 +26,11 @@ namespace AstroSurveyor
             {
                 hasTarget = true;
                 target = first.gameObject;
-                // var offsetX = Camera.main.WorldToScreenPoint(first.transform.position).x;
-                // var offsetY = Camera.main.WorldToScreenPoint(first.transform.position).y;
-                // arrow.anchoredPosition = new Vector2(offsetX, offsetY + 50);
-                // arrow.gameObject.SetActive(true);
             }
             else
             {
                 hasTarget = false;
                 target = null;
-                // arrow.gameObject.SetActive(false);
             }
         }
     }

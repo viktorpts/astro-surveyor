@@ -16,6 +16,17 @@ namespace AstroSurveyor
         // State
         bool isActive = false;
         bool isStarting = false;
+        bool IsStarting
+        {
+            get => isStarting;
+            set
+            {
+                if (value == false) {
+                    GameManager.Instance.HideProgressBar(gameObject);
+                }
+                isStarting = value;
+            }
+        }
         float currentCooldown = 0f;
         float currentStartUp = 0f;
         Consumer[] consumers;
@@ -23,8 +34,22 @@ namespace AstroSurveyor
         Animator animator;
 
         // Query
-        public bool ConsumersSatifsfied => consumers.All(c => c.CanActivate);
-        public virtual bool MeetsRequirements => true;
+        public bool ConsumersSatifsfied()
+        {
+            var check = consumers.Where(c => !c.CanActivate).ToArray();
+            if (check.Length > 0)
+            {
+                foreach (var missing in check)
+                {
+                    GameManager.Instance.ShowMessage($"Missing resource {missing.rate}x {missing.resourceType}");
+                }
+            }
+            return check.Length == 0;
+        }
+        public virtual bool MeetsRequirements()
+        {
+            return true;
+        }
 
         public bool IsActive => isActive;
 
@@ -50,11 +75,13 @@ namespace AstroSurveyor
                     }
                 }
             }
-            if (isStarting)
+            if (IsStarting)
             {
                 if (currentStartUp > 0)
                 {
                     currentStartUp -= Time.deltaTime;
+                    GameManager.Instance.UpdateProgressBar(gameObject, (startUpTime - currentStartUp) / startUpTime);
+
                     if (currentStartUp < 0)
                     {
                         currentStartUp = 0;
@@ -65,18 +92,19 @@ namespace AstroSurveyor
                     Activate(false);
                 }
             }
-            if (ConsumersSatifsfied == false) {
+            if ((IsStarting || isActive) && ConsumersSatifsfied() == false)
+            {
                 Deactivate();
             }
         }
 
         public void OnInteract()
         {
-            if (!isActive && !isStarting && currentCooldown == 0)
+            if (!isActive && !IsStarting && currentCooldown == 0)
             {
-                if (ConsumersSatifsfied && MeetsRequirements)
+                if (MeetsRequirements() && ConsumersSatifsfied())
                 {
-                    isStarting = true;
+                    IsStarting = true;
                     currentStartUp = startUpTime;
 
                     if (animator != null)
@@ -89,13 +117,8 @@ namespace AstroSurveyor
                         gameObject.transform.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 0.5f);
                     }
                 }
-                else
-                {
-                    // TODO display message/animation for missing requirements
-                    Debug.Log("Equipment not calibrated - examine formation for specs");
-                }
             }
-            else if ((isActive || isStarting) && type != InteractionType.ONCE)
+            else if ((isActive || IsStarting) && type != InteractionType.ONCE)
             {
                 Deactivate();
             }
@@ -104,16 +127,26 @@ namespace AstroSurveyor
 
         public virtual void Activate(bool isScanner)
         {
-            if ((MeetsRequirements == false && isScanner == false) || ConsumersSatifsfied == false)
+            var requirements = false;
+            if (this.GetType() == typeof(Formation))
+            {
+                requirements = ((Formation)this).scannerRequired == false || isScanner;
+            }
+            else
+            {
+                requirements = MeetsRequirements();
+            }
+
+            if (requirements == false || ConsumersSatifsfied() == false)
             {
                 isActive = false;
-                isStarting = false;
+                IsStarting = false;
                 return;
             }
 
             currentCooldown = cooldown;
             isActive = true;
-            isStarting = false;
+            IsStarting = false;
 
             foreach (var consumer in consumers)
             {
@@ -138,7 +171,7 @@ namespace AstroSurveyor
         public virtual void Deactivate()
         {
             isActive = false;
-            isStarting = false;
+            IsStarting = false;
 
             foreach (var consumer in consumers)
             {
@@ -159,7 +192,8 @@ namespace AstroSurveyor
             }
         }
 
-        public virtual void Stow() {
+        public virtual void Stow()
+        {
             Deactivate();
             if (animator != null)
             {
