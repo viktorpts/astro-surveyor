@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 1856057747}
   - component: {fileID: 800316340994475221}
   - component: {fileID: 7964712252872380317}
+  - component: {fileID: 5383185209491487996}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -280,6 +281,66 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a275fdda-4ac8-41b3-a9d9-70de0f977035
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1856057746}
+        m_MethodName: OnInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a1bc896e-4598-45f6-8b31-95e64dfbfdab
+    m_ActionName: Player/Inventory 1[/XInputControllerWindows/dpad/up,/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1856057746}
+        m_MethodName: OnInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 38266455-725a-4496-8a08-3fccb5a8da62
+    m_ActionName: Player/Inventory 2[/XInputControllerWindows/dpad/right,/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1856057746}
+        m_MethodName: OnInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 29082a8f-1338-4b33-926d-859e576ccdcf
+    m_ActionName: Player/Inventory 3[/XInputControllerWindows/dpad/down,/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1856057746}
+        m_MethodName: OnInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 35264694-8767-4abd-80b3-dcf76d353d72
+    m_ActionName: Player/Inventory 4[/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/left]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -318,6 +379,8 @@ MonoBehaviour:
   inputY: 0
   isHolding: 0
   isThrowing: 0
+  isBusy: 0
+  busyTime: 0
 --- !u!114 &800316340994475221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,6 +411,18 @@ MonoBehaviour:
   hasTarget: 0
   target: {fileID: 0}
   radius: 0.5
+--- !u!114 &5383185209491487996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3646671337005771289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f280e46953b66dd40a70011f3604d578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3801951055383959026
 GameObject:
   m_ObjectHideFlags: 0

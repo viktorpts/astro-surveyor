@@ -11,6 +11,7 @@ namespace AstroSurveyor
         AnimatorManager state;
         Carry carry;
         Interact interact;
+        Inventory inventory;
         float throwTime = 0.5f;
         Container inHands;
 
@@ -40,6 +41,7 @@ namespace AstroSurveyor
             state = new AnimatorManager(animator, transform);
             carry = GetComponent<Carry>();
             interact = GetComponent<Interact>();
+            inventory = GetComponent<Inventory>();
         }
 
         public Direction GetDirection()
@@ -154,6 +156,34 @@ namespace AstroSurveyor
                 }
             }
         }
+
+        public void OnInventory(InputAction.CallbackContext value)
+        {
+            if (value.performed)
+            {
+                if (inHands != null)
+                {
+                    var placedAway = inventory.PutAway(inHands.gameObject, value.action.name);
+                    if (placedAway)
+                    {
+                        inHands = null;
+                        character.isHolding = false;
+                        state.SetState("idle");
+                    }
+                }
+                else
+                {
+                    var tookOut = inventory.TakeOut(value.action.name);
+                    if (tookOut != null)
+                    {
+                        inHands = tookOut.GetComponent<Container>();
+                        character.isHolding = true;
+                        state.SetState("hold");
+                    }
+                }
+            }
+        }
+
 
         void CompleteInteraction(Interactive target)
         {

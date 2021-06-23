@@ -12,6 +12,7 @@ namespace AstroSurveyor
 
         public Canvas canvas;
         public GameObject progressBarTemplate;
+        public GameObject inventory;
 
         private Queue<Message> messages;
         private Dictionary<GameObject, ProgressBar> progressBars;
@@ -101,6 +102,22 @@ namespace AstroSurveyor
                 var current = progressBars[source];
                 progressBars.Remove(source);
                 Destroy(current.gameObject);
+            }
+        }
+
+        public void UpdateInventory(GameObject item, int slotIndex)
+        {
+            var target = inventory.transform.GetChild(slotIndex).gameObject;
+            if (item == null)
+            {
+                target.SetActive(false);
+            }
+            else
+            {
+                var image = target.GetComponent<Image>();
+                image.sprite = item.GetComponentInChildren<SpriteRenderer>().sprite;
+                image.preserveAspect = true;
+                target.SetActive(true);
             }
         }
     }
