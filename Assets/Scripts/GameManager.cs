@@ -13,11 +13,12 @@ namespace AstroSurveyor
         public Canvas canvas;
         public GameObject progressBarTemplate;
         public GameObject inventory;
-
-        private Queue<Message> messages;
-        private Dictionary<GameObject, ProgressBar> progressBars;
+        public GameObject tooltip;
         public Text output;
-        public RectTransform arrow;
+        RectTransform arrow;
+
+        Queue<Message> messages;
+        Dictionary<GameObject, ProgressBar> progressBars;
 
         void Awake()
         {
@@ -36,6 +37,7 @@ namespace AstroSurveyor
             progressBars = new Dictionary<GameObject, ProgressBar>();
             var arrowObject = GameObject.FindWithTag("TargetPointer");
             arrow = arrowObject.GetComponent<RectTransform>();
+            tooltip.SetActive(false);
         }
 
         void Update()
@@ -60,9 +62,8 @@ namespace AstroSurveyor
 
         public void ShowTarget(GameObject target)
         {
-            var offsetX = Camera.main.WorldToScreenPoint(target.transform.position).x;
-            var offsetY = Camera.main.WorldToScreenPoint(target.transform.position).y;
-            arrow.anchoredPosition = new Vector2(offsetX, offsetY + 150);
+            var offset = GetScreenPos(target.transform.position);
+            arrow.anchoredPosition = new Vector2(offset.x, offset.y + 150);
             arrow.gameObject.SetActive(true);
         }
 
@@ -90,8 +91,9 @@ namespace AstroSurveyor
             else
             {
                 current.progress = progress;
-                current.offsetX = Camera.main.WorldToScreenPoint(source.transform.position).x;
-                current.offsetY = Camera.main.WorldToScreenPoint(source.transform.position).y;
+                var offset = GetScreenPos(source.transform.position);
+                current.offsetX = offset.x;
+                current.offsetY = offset.y;
             }
         }
 
@@ -119,6 +121,29 @@ namespace AstroSurveyor
                 image.preserveAspect = true;
                 target.SetActive(true);
             }
+        }
+
+        public void UpdateTooltip(Vector2 offset, float progress)
+        {
+            var target = tooltip.GetComponent<ProgressBar>();
+            var screenOffset = GetScreenPos(offset);
+            target.offsetX = screenOffset.x;
+            target.offsetY = screenOffset.y;
+            target.progress = progress;
+        }
+
+        public void ShowTooltip(bool show) {
+            tooltip.SetActive(show);
+        }
+
+        private Vector2 GetScreenPos(Vector2 point)
+        {
+            var offset = new Vector2();
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), Camera.main.WorldToScreenPoint(point), null, out offset);
+            offset.x += 960;
+            offset.y += 540;
+
+            return offset;
         }
     }
 }

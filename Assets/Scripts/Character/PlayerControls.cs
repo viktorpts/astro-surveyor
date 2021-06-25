@@ -157,6 +157,11 @@ namespace AstroSurveyor
             }
         }
 
+        public void OnSpecial(InputAction.CallbackContext value)
+        {
+            GameObject.FindGameObjectWithTag("Finish").GetComponent<PickUpZone>().Engage(value.performed);
+        }
+
         public void OnInventory(InputAction.CallbackContext value)
         {
             if (value.performed)
@@ -183,7 +188,6 @@ namespace AstroSurveyor
                 }
             }
         }
-
 
         void CompleteInteraction(Interactive target)
         {

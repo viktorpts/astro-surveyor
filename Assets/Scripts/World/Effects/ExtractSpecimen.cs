@@ -39,9 +39,14 @@ namespace AstroSurveyor
 
         public override void Activate(bool isScanner)
         {
+            var formation = FindFormation().GetComponent<Formation>();
+            if (formation.harvested)
+            {
+                GameManager.Instance.ShowMessage("This formation has already been sampled!");
+                return;
+            }
             base.Activate(isScanner);
             var center = transform.position;
-            var formation = FindFormation().GetComponent<Formation>();
             var result = formation.specimenType;
             Instantiate(result, center, Quaternion.identity);
             formation.harvested = true;

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Container
   - TargetPointer
+  - Specimen
   layers:
   - Default
   - TransparentFX

@@ -341,6 +341,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 35264694-8767-4abd-80b3-dcf76d353d72
     m_ActionName: Player/Inventory 4[/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/left]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1856057746}
+        m_MethodName: OnSpecial
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 60922c3f-5211-407a-afa1-a3b894374d46
+    m_ActionName: Player/Special[/XInputControllerWindows/buttonNorth,/Keyboard/a]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

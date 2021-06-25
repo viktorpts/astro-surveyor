@@ -15,7 +15,6 @@ public class ProgressBar : MonoBehaviour
 
     void Update()
     {
-        // wipe.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, progress);
         wipe.localScale = new Vector3(progress, 1, 1);
         gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(offsetX, offsetY + 150f);
     }
