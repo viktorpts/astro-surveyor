@@ -7,6 +7,10 @@ namespace AstroSurveyor
         bool isCarried = false;
         float dropTime = 0f;
         bool dropping = false;
+        float spawnTime = 0f;
+        bool spawning = false;
+        Vector2 startPos;
+        Vector2 finalPos;
         Vector3 carriedPos = new Vector3(0, 0.37f, 0);
         Vector3 groundPos = new Vector3(0, 0, 0);
         Transform sprite;
@@ -40,6 +44,21 @@ namespace AstroSurveyor
                     sprite.transform.localPosition = Vector3.Lerp(carriedPos, groundPos, dropTime * 5);
                 }
             }
+            if (spawning)
+            {
+                if (spawnTime >= 0.5)
+                {
+                    spawning = false;
+                    transform.position = finalPos;
+                    sprite.transform.localPosition = groundPos;
+                }
+                else
+                {
+                    spawnTime += Time.deltaTime;
+                    transform.position = new Vector3(Mathf.SmoothStep(startPos.x, finalPos.x, spawnTime * 2), Mathf.SmoothStep(startPos.y, finalPos.y, spawnTime * 2), 0);
+                    sprite.transform.localPosition = new Vector3(0, Mathf.SmoothStep(groundPos.y, carriedPos.y, 1 - Mathf.Abs((spawnTime - 0.25f) * 2)), 0);
+                }
+            }
         }
 
         public void OnPickUp(GameObject parent)
@@ -49,7 +68,8 @@ namespace AstroSurveyor
             sprite.transform.localPosition = carriedPos;
 
             var range = gameObject.GetComponent<RangeIndicator>();
-            if (range != null) {
+            if (range != null)
+            {
                 range.sprite.SetActive(true);
             }
 
@@ -69,7 +89,8 @@ namespace AstroSurveyor
             dropTime = 0f;
 
             var range = gameObject.GetComponent<RangeIndicator>();
-            if (range != null) {
+            if (range != null)
+            {
                 range.sprite.SetActive(false);
             }
 
@@ -79,6 +100,14 @@ namespace AstroSurveyor
             {
                 interactive.Stow();
             }
+        }
+
+        public void AnimateSpawn(Vector2 finalPos)
+        {
+            spawning = true;
+            spawnTime = 0;
+            startPos = transform.position;
+            this.finalPos = finalPos;
         }
     }
 }
