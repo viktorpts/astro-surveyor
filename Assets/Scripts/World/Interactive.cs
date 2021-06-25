@@ -112,10 +112,6 @@ namespace AstroSurveyor
                         animator.SetBool("stowed", false);
                         animator.SetBool("working", true);
                     }
-                    else
-                    {
-                        gameObject.transform.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 0.5f);
-                    }
                 }
             }
             else if ((isActive || IsStarting) && type != InteractionType.ONCE)
@@ -162,10 +158,6 @@ namespace AstroSurveyor
                 animator.SetBool("working", false);
                 animator.SetBool("stowed", false);
             }
-            else
-            {
-                gameObject.transform.GetComponentInChildren<SpriteRenderer>().color = new Color(0.5f, 1f, 0.75f);
-            }
         }
 
         public virtual void Deactivate()
@@ -185,10 +177,6 @@ namespace AstroSurveyor
             if (animator != null)
             {
                 animator.SetBool("working", false);
-            }
-            else
-            {
-                gameObject.transform.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 1f);
             }
         }
 
