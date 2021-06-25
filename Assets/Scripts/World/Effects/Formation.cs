@@ -8,6 +8,7 @@ namespace AstroSurveyor
         public GameObject specimenType;
         public bool scannerRequired;
         public bool harvested;
+        public ToolType toolRequired = ToolType.SAMPLER;
 
         public override bool MeetsRequirements()
         {

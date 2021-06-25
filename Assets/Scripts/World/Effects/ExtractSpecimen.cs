@@ -7,13 +7,14 @@ namespace AstroSurveyor
     public class ExtractSpecimen : Interactive
     {
         public float radius = 0.5f;
+        public ToolType toolType = ToolType.SAMPLER;
 
         public override bool MeetsRequirements()
         {
             var formation = FindFormation();
             if (formation == null)
             {
-                GameManager.Instance.ShowMessage("This location isn't suitable for sampling");
+                GameManager.Instance.ShowMessage("This tool cannot be used here");
                 return false;
             }
             else if (base.MeetsRequirements())
@@ -59,6 +60,7 @@ namespace AstroSurveyor
 
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(center, radius)
                     .Where(o => o.GetComponent<Formation>() != null)
+                    .Where(o => o.GetComponent<Formation>().toolRequired == toolType)
                     .OrderBy((o) => Vector3.SqrMagnitude(o.gameObject.transform.position - center))
                     .ToArray();
 

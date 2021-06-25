@@ -304,9 +304,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasTarget: 0
   target: {fileID: 0}
-  radius: 10
+  radius: 4
   resourceType: 0
-  rate: 1
+  rate: 2
 --- !u!114 &6665238719486017508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,6 +322,7 @@ MonoBehaviour:
   type: 0
   cooldown: 1
   delay: 1
-  startUpTime: 5
+  startUpTime: 10
   mustCarry: 0
   radius: 0.5
+  toolType: 0

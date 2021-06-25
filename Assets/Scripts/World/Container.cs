@@ -48,6 +48,11 @@ namespace AstroSurveyor
             isCarried = true;
             sprite.transform.localPosition = carriedPos;
 
+            var range = gameObject.GetComponent<RangeIndicator>();
+            if (range != null) {
+                range.sprite.SetActive(true);
+            }
+
             // Deactivate stationary equipment on pick up
             var interactive = GetComponent<Interactive>();
             if (interactive != null && interactive.mustCarry == false)
@@ -62,6 +67,11 @@ namespace AstroSurveyor
             isCarried = false;
             dropping = true;
             dropTime = 0f;
+
+            var range = gameObject.GetComponent<RangeIndicator>();
+            if (range != null) {
+                range.sprite.SetActive(false);
+            }
 
             // Deactivate handheld equipment on drop
             var interactive = GetComponent<Interactive>();
