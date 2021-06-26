@@ -53,7 +53,7 @@ namespace AstroSurveyor
             var specimen = Instantiate(result, center, Quaternion.identity);
 
             var origin = source.transform.position;
-            var offset = Vector3.Normalize(center - origin) * 0.75f;
+            var offset = Vector3.Normalize(center - origin) * 1.25f;
             specimen.GetComponent<Container>().AnimateSpawn(center + offset);
 
 

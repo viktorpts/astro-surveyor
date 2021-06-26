@@ -22,6 +22,10 @@ namespace AstroSurveyor
         {
             dropTime = 0f;
             sprite = transform.GetChild(0);
+            if (sprite.gameObject.CompareTag("Container") == false)
+            {
+                sprite = sprite.GetChild(0);
+            }
         }
 
         void Update()

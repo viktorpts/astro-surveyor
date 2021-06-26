@@ -14,7 +14,20 @@ namespace AstroSurveyor
 
         // Query
         [SerializeField]
-        public bool CanActivate => hasTarget && target.GetComponent<Producer>().IsActive && target.GetComponent<Producer>().AvailableCapacity >= rate;
+        public bool CanActivate
+        {
+            get
+            {
+                if (producer != null)   // If producer is already connected, then activation is possible
+                {
+                    return true;
+                }
+                else
+                {
+                    return hasTarget && target.GetComponent<Producer>().IsActive && target.GetComponent<Producer>().AvailableCapacity >= rate;
+                }
+            }
+        }
 
         protected override bool FilterTargets(Collider2D collider)
         {

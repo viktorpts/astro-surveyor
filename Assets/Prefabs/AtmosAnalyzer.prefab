@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 9007202029656705713}
   m_Layer: 0
   m_Name: AtmosAnalyzer
-  m_TagString: Container
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -191,7 +191,7 @@ MonoBehaviour:
   cooldown: 0
   delay: 0
   startUpTime: 0
-  activeWhileCarried: 0
+  mustCarry: 0
 --- !u!1 &6866346495647098871
 GameObject:
   m_ObjectHideFlags: 0
