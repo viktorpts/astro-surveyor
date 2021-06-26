@@ -91,6 +91,8 @@ namespace AstroSurveyor
 
         public void OnMove(InputAction.CallbackContext value)
         {
+            if (GameManager.Instance.going == false) return;
+
             Vector2 input = value.ReadValue<Vector2>();
             character.inputX = input.x;
             character.inputY = input.y;
@@ -98,6 +100,8 @@ namespace AstroSurveyor
 
         public void OnAction(InputAction.CallbackContext value)
         {
+            if (GameManager.Instance.going == false) return;
+
             if (value.performed && !character.isThrowing && !character.isBusy)
             {
                 character.inputX = 0;
@@ -123,6 +127,8 @@ namespace AstroSurveyor
 
         public void OnInteract(InputAction.CallbackContext value)
         {
+            if (GameManager.Instance.going == false) return;
+
             if (CanInteract)
             {
                 if (value.performed)
@@ -159,6 +165,8 @@ namespace AstroSurveyor
 
         public void OnSpecial(InputAction.CallbackContext value)
         {
+            if (GameManager.Instance.going == false) return;
+
             GameObject.FindGameObjectWithTag("Finish").GetComponent<PickUpZone>().Engage(value.performed);
         }
 

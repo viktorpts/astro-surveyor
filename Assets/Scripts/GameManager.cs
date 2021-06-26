@@ -15,7 +15,10 @@ namespace AstroSurveyor
         public GameObject inventory;
         public GameObject tooltip;
         public Text output;
+        public GameObject summary;
         RectTransform arrow;
+
+        public bool going = true;
 
         Queue<Message> messages;
         Dictionary<GameObject, ProgressBar> progressBars;
@@ -132,8 +135,16 @@ namespace AstroSurveyor
             target.progress = progress;
         }
 
-        public void ShowTooltip(bool show) {
+        public void ShowTooltip(bool show)
+        {
             tooltip.SetActive(show);
+        }
+
+        public void ShowSummary(int specimens, int unique, int score)
+        {
+            summary.SetActive(true);
+            summary.GetComponent<SummaryScreen>().Display(specimens, unique, score);
+            // TODO handle input ot change scene
         }
 
         private Vector2 GetScreenPos(Vector2 point)

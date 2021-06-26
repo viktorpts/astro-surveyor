@@ -30,9 +30,10 @@ namespace AstroSurveyor
                 timeEngaged += Time.deltaTime;
                 if (timeEngaged >= 1f)
                 {
-                    // TODO show level summary overlay
-                    GameManager.Instance.ShowMessage($"Exit triggered. Final score: {CalcScore()}");
                     engaging = false;
+                    GameManager.Instance.going = false;
+                    var (count, unique, score) = CalcScore();
+                    GameManager.Instance.ShowSummary(count, unique, score);
                 }
             }
             else
@@ -75,8 +76,13 @@ namespace AstroSurveyor
             engaging = value;
         }
 
-        int CalcScore() {
-            return specimens.Sum(s => s.GetComponent<Specimen>().points);
+        (int, int, int) CalcScore()
+        {
+            return (
+                specimens.Count(),
+                specimens.Select(s => s.GetComponent<Specimen>().type).Distinct().Count(),
+                specimens.Sum(s => s.GetComponent<Specimen>().points)
+                );
         }
     }
 }
