@@ -81,11 +81,11 @@ namespace AstroSurveyor
             var playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
             specimens.AddRange(playerInventory.slots.Values.Where(s => s != null && s.GetComponent<Specimen>() != null));
 
-            return (
-                specimens.Count(),
-                specimens.Select(s => s.GetComponent<Specimen>().type).Distinct().Count(),
-                specimens.Sum(s => s.GetComponent<Specimen>().points)
-                );
+            var count = specimens.Count();
+            var unique = specimens.Select(s => s.GetComponent<Specimen>().type).Distinct().Count();
+            var score = specimens.Sum(s => s.GetComponent<Specimen>().points) + unique * 1000;
+
+            return (count, unique, score);
         }
     }
 }

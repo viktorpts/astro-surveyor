@@ -10,7 +10,7 @@ public class MainMenuController : MonoBehaviour
     public void StartTutorial()
     {
         Fade(false);
-        StartCoroutine(ChangeScene("DemoLevel"));
+        StartCoroutine(ChangeScene("Tutorial"));
     }
 
     public void StartLevel1()

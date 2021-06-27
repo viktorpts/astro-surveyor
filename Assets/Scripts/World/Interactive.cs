@@ -33,6 +33,8 @@ namespace AstroSurveyor
         Producer[] producers;
         Animator animator;
 
+        public bool IsPowered => isActive || isStarting;
+
         // Query
         public bool ConsumersSatifsfied()
         {

@@ -10,6 +10,7 @@ namespace AstroSurveyor
         public int rate = 1;
 
         // State
+        [SerializeField]
         private Producer producer;
 
         // Query
@@ -32,7 +33,7 @@ namespace AstroSurveyor
         protected override bool FilterTargets(Collider2D collider)
         {
             var targetComponent = collider.GetComponentInParent<Producer>();
-            return targetComponent != null && targetComponent.resourceType == resourceType && targetComponent.AvailableCapacity >= rate;
+            return targetComponent != null && targetComponent.gameObject != gameObject && targetComponent.resourceType == resourceType && targetComponent.AvailableCapacity >= rate;
         }
 
         public bool Activate()
@@ -52,6 +53,10 @@ namespace AstroSurveyor
             {
                 producer.UnLink(this);
                 producer = null;
+            }
+            var core = GetComponent<Interactive>();
+            if (core != null && core.IsPowered) {
+                core.Deactivate();
             }
         }
     }

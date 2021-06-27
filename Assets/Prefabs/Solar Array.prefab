@@ -378,6 +378,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: 0
+  connectorPrefab: {fileID: 2154803043942442127, guid: 6e1b084ade2bbf14f8f92d7362fadbc5,
+    type: 3}
   rate: 2
   consumers: []
 --- !u!114 &-6295265686475783901
