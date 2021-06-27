@@ -1008,8 +1008,8 @@ PrefabInstance:
     - target: {fileID: 2806373849704388192, guid: 4b5c0755a31acb348915f3134498d2c7,
         type: 3}
       propertyPath: m_Text
-      value: "Most formations require a specialized tool\n X  Examine formation\n
-        X  Activate tool to extract specimen"
+      value: "Most formations require a specialized tool\n X  Examine formation\nX 
+        Activate tool to extract specimen"
       objectReference: {fileID: 0}
     - target: {fileID: 2806373849704388193, guid: 4b5c0755a31acb348915f3134498d2c7,
         type: 3}
@@ -8348,7 +8348,7 @@ PrefabInstance:
     - target: {fileID: 2575087895615911225, guid: 18bfded373178f24087eef6969ea62f6,
         type: 3}
       propertyPath: m_Name
-      value: Sampler
+      value: Robotic Arm (Immobile)
       objectReference: {fileID: 0}
     - target: {fileID: 2575087895615911230, guid: 18bfded373178f24087eef6969ea62f6,
         type: 3}

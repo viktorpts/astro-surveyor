@@ -13,6 +13,12 @@ public class MainMenuController : MonoBehaviour
         StartCoroutine(ChangeScene("DemoLevel"));
     }
 
+    public void StartLevel1()
+    {
+        Fade(false);
+        StartCoroutine(ChangeScene("Level1"));
+    }
+
     public void ExitGame()
     {
         Application.Quit();

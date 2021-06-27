@@ -4,7 +4,7 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -2705597995764985619
-    second: rocks_0
+    second: S Med Rock
   - first:
       213: 8032301891362702160
     second: rocks_1
@@ -20,6 +20,36 @@ TextureImporter:
   - first:
       213: 7298283456765205186
     second: rocks_5
+  - first:
+      213: 6121542324556834107
+    second: Big Boulder Tall
+  - first:
+      213: 7099062288176452497
+    second: Big Boulder Wide
+  - first:
+      213: -8333436651470688534
+    second: Med Boulder
+  - first:
+      213: -8501297529017742733
+    second: Pillar 1
+  - first:
+      213: -5748061094662017199
+    second: Pillar 2
+  - first:
+      213: 6353385552450186822
+    second: Pillar 3
+  - first:
+      213: 6750611467916827374
+    second: Pillar 4
+  - first:
+      213: 572571321841911395
+    second: F Scattered Stones 1
+  - first:
+      213: 6762591801941130073
+    second: F Scattered Stones 1
+  - first:
+      213: 8716452300799431625
+    second: F Scattered Stones 3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -116,48 +146,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rocks_0
-      rect:
-        serializedVersion: 2
-        x: 548
-        y: 98
-        width: 23
-        height: 52
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: de05b6d25f8c37ad0800000000000000
-      internalID: -2705597995764985619
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rocks_1
-      rect:
-        serializedVersion: 2
-        x: 608
-        y: 96
-        width: 32
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0534f536308787f60800000000000000
-      internalID: 8032301891362702160
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: rocks_2
       rect:
         serializedVersion: 2
@@ -237,6 +225,237 @@ TextureImporter:
       bones: []
       spriteID: 2ca999ec226b84560800000000000000
       internalID: 7298283456765205186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big Boulder Tall
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 106
+        width: 117
+        height: 142
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b35aab49f4614f450800000000000000
+      internalID: 6121542324556834107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big Boulder Wide
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 139
+        width: 138
+        height: 104
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1931125e98fe48260800000000000000
+      internalID: 7099062288176452497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Med Boulder
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 9
+        width: 105
+        height: 77
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aee6ed6948fa95c80800000000000000
+      internalID: -8333436651470688534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pillar 1
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 64
+        width: 44
+        height: 56
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37acdfc60f2550a80800000000000000
+      internalID: -8501297529017742733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pillar 2
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 65
+        width: 48
+        height: 57
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15f6d6193e8ca30b0800000000000000
+      internalID: -5748061094662017199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pillar 3
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 0
+        width: 43
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64e64ee8f72cb2850800000000000000
+      internalID: 6353385552450186822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pillar 4
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 1
+        width: 51
+        height: 62
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eea5cd12d5dfead50800000000000000
+      internalID: 6750611467916827374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F Scattered Stones 2
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 610
+        width: 51
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36686f6659e22f700800000000000000
+      internalID: 572571321841911395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F Scattered Stones 1
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 608
+        width: 30
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95b7ba30a6d89dd50800000000000000
+      internalID: 6762591801941130073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F Scattered Stones 3
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 583
+        width: 29
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c359c29f2f07f870800000000000000
+      internalID: 8716452300799431625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: S Med Rock
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 971
+        width: 49
+        height: 53
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de05b6d25f8c37ad0800000000000000
+      internalID: -2705597995764985619
       vertices: []
       indices: 
       edges: []

@@ -7,7 +7,7 @@ namespace AstroSurveyor
     public class ExtractSpecimen : Interactive
     {
         public float radius = 0.5f;
-        public ToolType toolType = ToolType.SAMPLER;
+        public ToolType toolType = ToolType.ROBOTIC_ARM;
 
         public override bool MeetsRequirements()
         {

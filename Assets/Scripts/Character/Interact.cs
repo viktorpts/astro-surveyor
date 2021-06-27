@@ -22,9 +22,16 @@ namespace AstroSurveyor
                     var carriedCollider = controller.InHands.GetComponent<Collider2D>();
                     return carriedCollider == collider;
                 }
+                else
+                {
+                    return false;
+                }
             }
-            var targetComponent = collider.GetComponentInParent<Interactive>();
-            return targetComponent != null && targetComponent.mustCarry == false && (targetComponent.type == InteractionType.ONCE && targetComponent.IsActive) == false;
+            else
+            {
+                var targetComponent = collider.GetComponentInParent<Interactive>();
+                return targetComponent != null && targetComponent.mustCarry == false && (targetComponent.type == InteractionType.ONCE && targetComponent.IsActive) == false;
+            }
         }
     }
 }

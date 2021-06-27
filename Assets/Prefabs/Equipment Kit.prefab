@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3436870798909255348}
   m_Layer: 0
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: Container
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5413603272448904468}
   m_Layer: 0
   m_Name: Equipment Kit
-  m_TagString: Container
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   cooldown: 0
   delay: 0
   startUpTime: 0
-  activeWhileCarried: 0
+  mustCarry: 0
   result: {fileID: 0}
 --- !u!1 &8863949680856183551
 GameObject:
