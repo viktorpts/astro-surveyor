@@ -2,6 +2,6 @@ namespace AstroSurveyor
 {
     public enum ToolType
     {
-        DRILL, ROBOTIC_ARM, SAMPLER
+        DRILL, ROBOTIC_ARM, SAMPLER, EXPLOSIVE
     }
 }

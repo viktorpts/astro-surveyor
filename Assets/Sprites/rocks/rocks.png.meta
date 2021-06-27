@@ -50,6 +50,9 @@ TextureImporter:
   - first:
       213: 8716452300799431625
     second: F Scattered Stones 3
+  - first:
+      213: -8405122971935063089
+    second: Brittle Boulder
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -456,6 +459,27 @@ TextureImporter:
       bones: []
       spriteID: de05b6d25f8c37ad0800000000000000
       internalID: -2705597995764985619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brittle Boulder
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 130
+        width: 57
+        height: 47
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc3c55470310b5b80800000000000000
+      internalID: -8405122971935063089
       vertices: []
       indices: 
       edges: []
