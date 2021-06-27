@@ -6,7 +6,7 @@ namespace AstroSurveyor
 {
     public class Inventory : MonoBehaviour
     {
-        Dictionary<string, GameObject> slots;
+        public Dictionary<string, GameObject> slots;
         Dictionary<string, int> indexMap;
 
 

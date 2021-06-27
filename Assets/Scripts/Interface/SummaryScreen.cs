@@ -10,11 +10,15 @@ namespace AstroSurveyor
 {
     public class SummaryScreen : MonoBehaviour
     {
-        public Text specimens;
-        public Text unique;
-        public Text score;
+        public Text specimensLabel;
+        public Text uniqueLabel;
+        public Text scoreLabel;
 
         bool m_ButtonPressed = false;
+        float rollIn = 0f;
+        int specimens;
+        int unique;
+        int score;
 
 
         void Start()
@@ -45,13 +49,41 @@ namespace AstroSurveyor
             {
                 SceneManager.LoadScene("Menu");
             }
+
+
+
+            if (rollIn < 0.5)
+            {
+                this.specimensLabel.text = Mathf.RoundToInt(Mathf.Lerp(0, specimens, rollIn * 2)).ToString();
+            }
+            else if (rollIn < 1)
+            {
+                this.specimensLabel.text = specimens.ToString();
+                this.uniqueLabel.text = Mathf.RoundToInt(Mathf.Lerp(0, unique, (rollIn - 0.5f) * 2)).ToString();
+            }
+            else
+            {
+                this.uniqueLabel.text = unique.ToString();
+                this.scoreLabel.text = Mathf.RoundToInt(Mathf.Lerp(0, score, (rollIn - 1f) / 2f)).ToString();
+            }
+
+            if (rollIn < 3)
+            {
+                rollIn += Time.deltaTime;
+            }
+            else
+            {
+                this.specimensLabel.text = specimens.ToString();
+                this.uniqueLabel.text = unique.ToString();
+                this.scoreLabel.text = score.ToString();
+            }
         }
 
         public void Display(int specimens, int unique, int score)
         {
-            this.specimens.text = specimens.ToString();
-            this.unique.text = unique.ToString();
-            this.score.text = score.ToString();
+            this.specimens = specimens;
+            this.unique = unique;
+            this.score = score;
         }
     }
 }

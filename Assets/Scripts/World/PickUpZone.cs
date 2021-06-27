@@ -78,6 +78,9 @@ namespace AstroSurveyor
 
         (int, int, int) CalcScore()
         {
+            var playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+            specimens.AddRange(playerInventory.slots.Values.Where(s => s != null && s.GetComponent<Specimen>() != null));
+
             return (
                 specimens.Count(),
                 specimens.Select(s => s.GetComponent<Specimen>().type).Distinct().Count(),
