@@ -21,7 +21,8 @@ namespace AstroSurveyor
             get => isStarting;
             set
             {
-                if (value == false) {
+                if (value == false)
+                {
                     GameManager.Instance.HideProgressBar(gameObject);
                 }
                 isStarting = value;
@@ -106,6 +107,10 @@ namespace AstroSurveyor
             {
                 if (MeetsRequirements() && ConsumersSatifsfied())
                 {
+                    foreach (var consumer in consumers)
+                    {
+                        consumer.Activate();
+                    }
                     IsStarting = true;
                     currentStartUp = startUpTime;
 
@@ -146,10 +151,7 @@ namespace AstroSurveyor
             isActive = true;
             IsStarting = false;
 
-            foreach (var consumer in consumers)
-            {
-                consumer.Activate();
-            }
+
             foreach (var producer in producers)
             {
                 producer.Activate();
